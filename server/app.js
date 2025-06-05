@@ -3,8 +3,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const { testConnection, sequelize } = require('./config/database');
-const User = require('./models/User');
+const { User, Recipe } = require('./models');
 const userRoutes = require('./routes/userRoutes');
+const recipeRoutes = require('./routes/recipeRoutes');
 require('dotenv').config();
 
 
@@ -34,6 +35,8 @@ app.use(express.json());
 
 // Routes
 app.use('/api/users', userRoutes);
+app.use('/api/recipes', recipeRoutes);
+
 
 // Basic test route
 app.get('/', (req, res) => {
